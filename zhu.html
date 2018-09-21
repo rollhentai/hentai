@@ -1,0 +1,182 @@
+<script src="jquery-1.11.1.min.js"></script>
+<style>
+	div{
+		margin-bottom:8px;
+	}
+	canvas {
+		background: ;
+	}
+
+</style>
+
+<script>
+	let bg;
+	window.onload=function(){
+		
+		bg = new Image();
+		bg.src = "bg.gif";
+	}
+	
+	function happy() {
+		
+		let y = document.querySelectorAll("input");
+		console.log(y);
+		console.log(y[0].value);let h = document.querySelector("canvas");
+		let hh = h.getContext("2d");
+	
+		kuan=h.width;
+		gao=h.height;
+		
+		hh.clearRect(0, 0, kuan, gao);
+		
+		
+		let nm = hh.createPattern(bg, "repeat");
+		hh.fillStyle = nm;
+		hh.fillRect(0, 0, kuan,gao);
+		
+		hh.fillStyle="black";
+		hh.beginPath();
+		hh.moveTo(50, 50);
+		hh.lineTo(45, 55);	
+		hh.lineTo(55, 55);
+		hh.closePath();
+		hh.fill();
+		
+		
+		hh.beginPath();
+		hh.moveTo(50, 300);
+		hh.lineTo(650, 300);		
+		hh.stroke();
+		
+		hh.beginPath();
+		hh.moveTo(50, 300);
+		hh.lineTo(50, 50);		
+		hh.stroke();
+		
+		hh.beginPath();
+		hh.moveTo(50, 250);
+		hh.lineTo(650, 250);		
+		hh.stroke();
+		
+		hh.beginPath();
+		hh.moveTo(50, 200);
+		hh.lineTo(650, 200);		
+		hh.stroke();
+		
+		
+		hh.beginPath();
+		hh.moveTo(50, 150);
+		hh.lineTo(650, 150);		
+		hh.stroke();
+		
+		hh.beginPath();
+		hh.moveTo(50, 100);
+		hh.lineTo(650, 100);		
+		hh.stroke();
+		
+		hh.fillStyle="black";
+		hh.font="20px Times New Roman"
+		hh.textAlign = "right";
+		hh.textBaseline = "middle";
+		hh.fillText(50, 40, 250);
+		
+		hh.fillStyle="black";
+		hh.font="20px Times New Roman"
+		hh.textAlign = "center";
+		hh.textBaseline = "top";
+		hh.fillText("ItemA", 100, 310);
+		
+		hh.fillStyle="black";
+		hh.font="20px Times New Roman"
+		hh.textAlign = "right";
+		hh.textBaseline = "middle";
+		hh.fillText(100, 40, 200);
+		
+		hh.fillStyle="black";
+		hh.font="20px Times New Roman"
+		hh.textAlign = "center";
+		hh.textBaseline = "top";
+		hh.fillText("ItemB", 200, 310);
+		
+		hh.fillStyle="black";
+		hh.font="20px Times New Roman"
+		hh.textAlign = "right";
+		hh.textBaseline = "middle";
+		hh.fillText(150, 40, 150);
+		
+		hh.fillStyle="black";
+		hh.font="20px Times New Roman"
+		hh.textAlign = "center";
+		hh.textBaseline = "top";
+		hh.fillText("ItemC", 300, 310);
+		
+		hh.fillStyle="black";
+		hh.font="20px Times New Roman"
+		hh.textAlign = "right";
+		hh.textBaseline = "middle";
+		hh.fillText(200, 40, 100);
+		
+		hh.fillStyle="black";
+		hh.font="20px Times New Roman"
+		hh.textAlign = "center";
+		hh.textBaseline = "top";
+		hh.fillText("ItemD", 400, 310);
+		
+		hh.fillStyle="black";
+		hh.font="20px Times New Roman"
+		hh.textAlign = "center";
+		hh.textBaseline = "top";
+		hh.fillText("ItemE", 500, 310);
+		
+		let xxx=[];
+		let l={};
+		for(let p=0;p<y.length;p++){
+			 l={x:100*(p+1),y:(gao-50)-y[p].value};
+			 console.log(l);
+			xxx.push(l);
+		}
+		console.log(xxx);
+		//let xxx=[{x:100,y:gao-50-y.val},{x:200,y:130},{x:300,y:230},{x:400,y:150},{x:500,y:140}];
+		
+		hh.shadowColor="gray";
+		hh.shadowOffsetX=10;
+		hh.shadowOffsetY=-10;
+		hh.shadowBlur=30;
+		
+		let bumaijianbing=hh.createLinearGradient(0,0,0,gao);
+		bumaijianbing.addColorStop(0,"red");
+		bumaijianbing.addColorStop(1,"yellow");
+		
+		hh.fillStyle=bumaijianbing;
+		for(let r=0;r<xxx.length;r++){
+			hh.fillRect(100*(r+1)-15,300-y[r].value,30,y[r].value-0.5);
+		}
+		
+		hh.shadowColor = "rgba(0, 0, 0, 0)";
+		hh.fillStyle = "blue";
+		hh.font = "italic 12px Times New Roman";
+		for( let m=0;m<xxx.length;m++){
+			hh.fillText(y[m].value,100*(m+1),(gao-50)-y[m].value-20);
+		}
+		
+		let tu=new Image();
+		tu.onload=function(){
+			hh.drawImage(tu,kuan-tu.width,0);
+		}
+		
+		tu.src="logo.png";
+		
+		
+		
+	}
+	
+</script>
+
+<div><label for="a">ItemA:</label><input type="text" name="ya" id="a" value=100></div>
+<div><label for="b">ItemB:</label><input type="text" name="ya" id="b" value=130></div>
+<div><label for="c">ItemC:</label><input type="text" name="ya" id="c" value=60></div>
+<div><label for="d">ItemD:</label><input type="text" name="ya" id="d" value=120></div>
+<div><label for="e">ItemE:</label><input type="text" name="ya" id="e" value=87></div>
+<button onclick="happy()">chart</button>
+
+<div id="bb"><canvas width="700" height="350"></canvas></div>
